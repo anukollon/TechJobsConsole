@@ -41,7 +41,7 @@ namespace TechJobsConsole
                     else
                     {
                         List<string> results = JobData.FindAll(columnChoice);
-                        results.Sort();
+                        results.Sort(); //Bonus Mission - Sorting list results
 
                         Console.WriteLine("\n*** All " + columnChoices[columnChoice] + " Values ***");
                         foreach (string item in results)
@@ -137,7 +137,6 @@ namespace TechJobsConsole
                     Console.WriteLine("*****\n");
                 }
             }
-          //Console.WriteLine("PrintJobs is not implemented yet");
         }
     }
 }

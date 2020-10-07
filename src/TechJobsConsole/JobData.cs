@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -13,8 +14,7 @@ namespace TechJobsConsole
         public static List<Dictionary<string, string>> FindAll()
         {
             LoadData();
-            List<Dictionary<string, string>> CopyOfAllJobs = new List<Dictionary<string, string>>();
-            CopyOfAllJobs = AllJobs;
+            List<Dictionary<string, string>> CopyOfAllJobs = new List<Dictionary<string, string>>(AllJobs);
             return CopyOfAllJobs;
         }
 
@@ -27,8 +27,8 @@ namespace TechJobsConsole
             LoadData();
 
             List<string> values = new List<string>();
-
-            foreach (Dictionary<string, string> job in AllJobs)
+            List<Dictionary<string, string>> CopyOfAllJobs = new List<Dictionary<string, string>>(AllJobs); //Bonus Mission - Make a copy of AllJobs
+            foreach (Dictionary<string, string> job in CopyOfAllJobs)
             {
                 string aValue = job[column];
 
@@ -46,12 +46,12 @@ namespace TechJobsConsole
             LoadData();
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-
-            foreach (Dictionary<string, string> row in AllJobs)
+            List<Dictionary<string, string>> CopyOfAllJobs = new List<Dictionary<string, string>>(AllJobs); //Bonus Mission - Make a copy of AllJobs
+            foreach (Dictionary<string, string> row in CopyOfAllJobs)
             {
                 string aValue = row[column];
 
-                if (aValue.ToLower().Contains(value.ToLower()))
+                if (aValue.ToLower().Contains(value.ToLower())) //Make Search Case-Insensitive
                 {
                     jobs.Add(row);
                 }
@@ -65,7 +65,6 @@ namespace TechJobsConsole
          */
         private static void LoadData()
         {
-
             if (IsDataLoaded)
             {
                 return;
@@ -148,12 +147,13 @@ namespace TechJobsConsole
             LoadData();
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            List<Dictionary<string, string>> CopyOfAllJobs = new List<Dictionary<string, string>>(AllJobs); //Bonus Mission - Make a copy of AllJobs
 
-            foreach (Dictionary<string, string> row in AllJobs)
+            foreach (Dictionary<string, string> row in CopyOfAllJobs)
             {
                 foreach (KeyValuePair<string, string> kvp in row)
                 {
-                    if (kvp.Value.ToLower().Contains(value.ToLower()))
+                    if (kvp.Value.ToLower().Contains(value.ToLower())) //Make Search Case-Insensitive
                     {
                         jobs.Add(row);
                         break;
